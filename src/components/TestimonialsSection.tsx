@@ -1,0 +1,141 @@
+import React, { useState, useEffect } from 'react';
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Alhaji Ibrahim Garba",
+    title: "Traditional Leader",
+    content: "Hon. Zannah Lawan Ajimi has demonstrated exceptional leadership qualities and genuine commitment to our community's development.",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "Dr. Fatima Mohammed",
+    title: "Education Specialist",
+    content: "His vision for education transformation aligns perfectly with our community's needs. We trust his ability to deliver.",
+    rating: 5
+  },
+  {
+    id: 3,
+    name: "Engr. Musa Bello",
+    title: "Youth Representative",
+    content: "Finally, a leader who understands the challenges facing our youth and has concrete plans to address them.",
+    rating: 5
+  }
+];
+
+const TestimonialsSection: React.FC = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('testimonials');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section id="testimonials" className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Community Endorsements</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Trusted by leaders, respected by the community, committed to transformation
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100 rounded-full translate-y-12 -translate-x-12"></div>
+              
+              <div className="relative z-10">
+                <div className="flex justify-center mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-6 h-6 text-yellow-400 fill-current"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
+                
+                <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 text-center mb-8 leading-relaxed">
+                  "{testimonials[currentTestimonial].content}"
+                </blockquote>
+                
+                <div className="text-center">
+                  <div className="text-xl font-semibold text-gray-900 mb-2">
+                    {testimonials[currentTestimonial].name}
+                  </div>
+                  <div className="text-green-600 font-medium">
+                    {testimonials[currentTestimonial].title}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial Indicators */}
+          <div className="flex justify-center mt-8 space-x-3">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentTestimonial(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentTestimonial 
+                    ? 'bg-green-600 scale-125' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
+            <div className="text-gray-600 text-sm">Community Leaders</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">15+</div>
+            <div className="text-gray-600 text-sm">Years Experience</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">100%</div>
+            <div className="text-gray-600 text-sm">Transparency</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
+            <div className="text-gray-600 text-sm">Community Service</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TestimonialsSection;
