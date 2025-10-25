@@ -17,13 +17,15 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
+        {/* Background gradient as fallback */}
+        <div className="w-full h-full bg-gradient-to-br from-blue-900 via-green-800 to-blue-700"></div>
         <img 
           src="/hero-image.jpg" 
           alt="Hon. Zannah Lawan Ajimi" 
-          className="w-full h-full object-cover md:object-cover object-top"
+          className="w-full h-full object-cover md:object-cover object-top absolute inset-0"
           onError={(e) => {
-            console.log('Image failed to load:', e);
-            e.currentTarget.src = '/Ajimii-standing-picture.jpg';
+            console.log('Image failed to load, using gradient background');
+            e.currentTarget.style.display = 'none';
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-green-900/40"></div>
