@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
         <img 
-          src="/Zanna Header.jpg" 
+          src="/Ajimii-standing-picture.jpg" 
           alt="Hon. Zannah Lawan Ajimi" 
           className="w-full h-full object-cover md:object-cover object-top"
         />
