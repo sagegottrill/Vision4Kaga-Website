@@ -18,9 +18,13 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
         <img 
-          src="/Ajimii-standing-picture.jpg" 
+          src="/hero-image.jpg" 
           alt="Hon. Zannah Lawan Ajimi" 
           className="w-full h-full object-cover md:object-cover object-top"
+          onError={(e) => {
+            console.log('Image failed to load:', e);
+            e.currentTarget.src = '/Ajimii-standing-picture.jpg';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-green-900/40"></div>
       </div>
