@@ -135,7 +135,7 @@ const HeroSection: React.FC = () => {
             <div className="text-white/80 text-xs sm:text-sm">Community Focused</div>
           </div>
           <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2">2025/2026</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2">2yrs</div>
             <div className="text-white/80 text-xs sm:text-sm">Transformation Year</div>
           </div>
         </div>
