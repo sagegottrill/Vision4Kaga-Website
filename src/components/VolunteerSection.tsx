@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const VolunteerSection: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '', email: '', phone: '', message: ''
+    name: '', email: '', phone: '', state: '', lga: '', message: ''
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -47,8 +47,25 @@ const VolunteerSection: React.FC = () => {
             placeholder="Phone Number"
             value={formData.phone}
             onChange={(e) => setFormData({...formData, phone: e.target.value})}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none mb-6"
+            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none mb-4"
           />
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <input
+              type="text"
+              placeholder="State"
+              value={formData.state}
+              onChange={(e) => setFormData({...formData, state: e.target.value})}
+              className="px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Local Government Area (LGA)"
+              value={formData.lga}
+              onChange={(e) => setFormData({...formData, lga: e.target.value})}
+              className="px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
 
           <textarea
             placeholder="Tell us more about yourself or any questions you have..."

@@ -12,6 +12,8 @@ const HeroSection: React.FC = () => {
     '/hero c/2.jpg',
     '/hero c/4.jpg',
     '/hero c/5.jpg',
+    '/MARKET.jpg',
+    '/hero c/ss.jpg',
   ];
 
   const scrollToSection = (id: string) => {
@@ -101,23 +103,20 @@ const HeroSection: React.FC = () => {
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Logo and Tag */}
+        {/* Logo */}
         <div className={`mb-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <div className="flex items-center justify-center space-x-3 mb-4">
+          <div className="flex items-center justify-center">
             <img 
               src="/logo .png" 
               alt="Campaign Logo" 
-              className="h-12 w-auto"
+              className="h-24 md:h-32 lg:h-40 w-auto"
             />
           </div>
-          <p className="text-white/90 text-base font-medium">
-            APC Chairmanship Candidate • Kaga Local Government • Borno State
-          </p>
         </div>
 
         {/* Main Heading */}
-        <div className={`mb-8 md:mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight px-4">
+        <div className={`mb-4 md:mb-6 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-3 md:mb-4 leading-tight px-4">
             Vision for a New Kaga
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4">
@@ -126,7 +125,7 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Statistics Cards */}
-        <div className={`mb-8 md:mb-12 grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto px-4 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        <div className={`mb-6 md:mb-8 grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto px-4 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
             <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">6</div>
             <div className="text-white/80 text-xs sm:text-sm">Development Pillars</div>

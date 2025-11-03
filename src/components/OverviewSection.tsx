@@ -104,15 +104,15 @@ const OverviewSection: React.FC = () => {
           </p>
           
           <div className="relative overflow-hidden">
-            <div className="flex animate-scroll gap-8">
+            <div className="flex animate-scroll gap-4 md:gap-8">
               {[...coreValues, ...coreValues].map((value, index) => (
                 <div 
                   key={index} 
-                  className="flex-shrink-0 w-80 p-6 bg-transparent text-left"
+                  className="flex-shrink-0 w-40 sm:w-48 md:w-80 p-4 md:p-6 bg-transparent text-left"
                 >
                   <div className="space-y-2">
-                    <h3 className="font-semibold text-xl text-blue-900">{value.name}</h3>
-                    <p className="text-gray-700">{value.description}</p>
+                    <h3 className="font-semibold text-base md:text-xl text-blue-900">{value.name}</h3>
+                    <p className="text-sm md:text-base text-gray-700">{value.description}</p>
                   </div>
                 </div>
               ))}
@@ -131,7 +131,7 @@ const OverviewSection: React.FC = () => {
           }
           
           .animate-scroll {
-            animation: scroll 15s linear infinite;
+            animation: scroll 10s linear infinite;
           }
           
           .animate-scroll:hover {

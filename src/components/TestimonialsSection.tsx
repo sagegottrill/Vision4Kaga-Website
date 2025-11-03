@@ -113,26 +113,6 @@ const TestimonialsSection: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Trust Indicators */}
-        <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-900 mb-2">500+</div>
-            <div className="text-gray-600 text-sm">Community Leaders</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-900 mb-2">15+</div>
-            <div className="text-gray-600 text-sm">Years Experience</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-900 mb-2">100%</div>
-            <div className="text-gray-600 text-sm">Transparency</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-900 mb-2">24/7</div>
-            <div className="text-gray-600 text-sm">Community Service</div>
-          </div>
-        </div>
       </div>
     </section>
   );
