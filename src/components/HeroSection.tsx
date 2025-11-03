@@ -116,42 +116,42 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Main Heading */}
-        <div className={`mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+        <div className={`mb-8 md:mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight px-4">
             Vision for a New Kaga
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4">
             Advancing Inclusive Development and Accountable Leadership in Kaga Local Government Area
           </p>
         </div>
         
         {/* Statistics Cards */}
-        <div className={`mb-12 grid grid-cols-3 gap-4 max-w-3xl mx-auto transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
-            <div className="text-4xl font-bold text-white mb-2">6</div>
-            <div className="text-white/80 text-sm">Development Pillars</div>
+        <div className={`mb-8 md:mb-12 grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto px-4 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">6</div>
+            <div className="text-white/80 text-xs sm:text-sm">Development Pillars</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
-            <div className="text-4xl font-bold text-white mb-2">100%</div>
-            <div className="text-white/80 text-sm">Community Focused</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">100%</div>
+            <div className="text-white/80 text-xs sm:text-sm">Community Focused</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2">2025/2026</div>
-            <div className="text-white/80 text-sm">Transformation Year</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 md:p-6 border border-white/20">
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2">2025/2026</div>
+            <div className="text-white/80 text-xs sm:text-sm">Transformation Year</div>
           </div>
         </div>
 
         {/* Call to Action Buttons */}
-        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <button 
             onClick={() => scrollToSection('platform')}
-            className="bg-green-600 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-xl"
+            className="w-full sm:w-auto bg-green-600 text-white px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-xl"
           >
             View Development Agenda
           </button>
           <button 
             onClick={() => scrollToSection('volunteer')}
-            className="bg-white text-gray-900 px-10 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
+            className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
           >
             Join the Movement
           </button>

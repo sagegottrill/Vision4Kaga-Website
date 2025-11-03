@@ -12,14 +12,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-r from-blue-900 to-green-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-2xl font-serif font-bold mb-4">Hon. Zannah Lawan Ajimi</h3>
-            <p className="text-blue-200 mb-4">
-              Vision for a New Kaga: Advancing Inclusive Development and Accountable Leadership.
-            </p>
-          </div>
-
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">

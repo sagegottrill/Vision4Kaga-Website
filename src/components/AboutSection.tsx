@@ -2,9 +2,9 @@ import React from 'react';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-12 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           <div>
             <img 
               src="/ajimi.png" 
@@ -54,8 +54,8 @@ const AboutSection: React.FC = () => {
           </div>
           
           <div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-blue-900 mb-6 leading-tight">Meet Hon. Zannah Lawan Ajimi</h2>
-            <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-blue-900 mb-4 md:mb-6 leading-tight">Meet Hon. Zannah Lawan Ajimi</h2>
+            <p className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed">
               Hon. Zannah Lawan Ajimi is a dynamic leader from Kaga Local Government Area of Borno State, 
               committed to advancing inclusive development and accountable leadership. With his engineering 
               background and passion for innovation, he brings a unique perspective to local governance.

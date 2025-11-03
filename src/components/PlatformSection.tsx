@@ -108,27 +108,27 @@ const platformIssues = [
 
 const PlatformSection: React.FC = () => {
   return (
-    <section id="platform" className="py-20 bg-gray-50">
+    <section id="platform" className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-green-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-blue-900 mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-blue-900 mb-4 leading-tight">
             Strategic Development Agenda
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-6 md:mb-8 leading-relaxed">
             Six priority pillars designed for immediate impact, sustainability, and community relevance. 
             This comprehensive plan outlines our vision for transforming Kaga Local Government Area.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {platformIssues.map((issue) => (
             <div 
               key={issue.id}
-              className="bg-white rounded-lg p-6 shadow-md border border-gray-200"
+              className="bg-white rounded-lg p-4 md:p-6 shadow-md border border-gray-200"
             >
-              <div className="mb-4">{issue.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{issue.title}</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <div className="mb-3 md:mb-4">{issue.icon}</div>
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">{issue.title}</h3>
+              <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                 {issue.description}
               </p>
             </div>

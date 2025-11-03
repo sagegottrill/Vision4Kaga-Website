@@ -30,7 +30,7 @@ const Navigation: React.FC = () => {
               alt="Campaign Logo" 
               className="h-10 w-auto"
             />
-            <div className="text-2xl font-serif font-bold text-green-700">
+            <div className="text-2xl font-serif font-bold text-blue-900">
               Hon. Zannah Lawan Ajimi
             </div>
           </div>

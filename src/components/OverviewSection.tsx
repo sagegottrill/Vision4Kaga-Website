@@ -22,7 +22,7 @@ const OverviewSection: React.FC = () => {
 
   const coreValues = [
     { 
-      name: 'Integrity', 
+      name: 'INTEGRITY', 
       description: 'Transparent and honest leadership in all governance matters',
       icon: '🛡️',
       color: 'blue',
@@ -30,7 +30,7 @@ const OverviewSection: React.FC = () => {
       example: 'Open budget processes and public accountability'
     },
     { 
-      name: 'Equity', 
+      name: 'EQUITY', 
       description: 'Fair and inclusive development across all wards and communities',
       icon: '⚖️',
       color: 'green',
@@ -38,7 +38,7 @@ const OverviewSection: React.FC = () => {
       example: 'Equal opportunities for all communities'
     },
     { 
-      name: 'Innovation', 
+      name: 'INNOVATION', 
       description: 'Creative solutions leveraging technology and modern approaches',
       icon: '💡',
       color: 'purple',
@@ -46,7 +46,7 @@ const OverviewSection: React.FC = () => {
       example: 'Smart governance and digital services'
     },
     { 
-      name: 'Collaboration', 
+      name: 'COLLABORATION', 
       description: 'Partnership-driven progress with stakeholders and communities',
       icon: '🤝',
       color: 'orange',
@@ -54,7 +54,7 @@ const OverviewSection: React.FC = () => {
       example: 'Community-driven development initiatives'
     },
     { 
-      name: 'Service', 
+      name: 'SERVICE', 
       description: 'Community-first approach prioritizing people\'s welfare',
       icon: '❤️',
       color: 'red',
@@ -62,7 +62,7 @@ const OverviewSection: React.FC = () => {
       example: 'Always available for community needs'
     },
     { 
-      name: 'Resilience', 
+      name: 'RESILIENCE', 
       description: 'Sustainable long-term solutions for lasting development',
       icon: '🌱',
       color: 'teal',
@@ -72,21 +72,21 @@ const OverviewSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Vision & Mission */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
-            <h2 className="text-3xl font-serif font-bold text-blue-900 mb-6">Our Vision</h2>
-            <p className="text-lg leading-relaxed text-gray-700">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-8 md:mb-16">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-xl">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4 md:mb-6">Our Vision</h2>
+            <p className="text-base md:text-lg leading-relaxed text-gray-700">
               To build a prosperous, secure, and inclusive Kaga local government where every community 
               thrives through equitable development, empowered communities, and responsive leadership.
             </p>
           </div>
           
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
-            <h2 className="text-3xl font-serif font-bold text-blue-900 mb-6">Our Mission</h2>
-            <p className="text-lg leading-relaxed text-gray-700">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-xl">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4 md:mb-6">Our Mission</h2>
+            <p className="text-base md:text-lg leading-relaxed text-gray-700">
               To drive transformational development in Kaga Local Government through participatory governance, 
               strategic partnerships, and investments in human capital, infrastructure, and innovation, anchored 
               on transparency, accountability, and community-driven priorities.
@@ -95,11 +95,11 @@ const OverviewSection: React.FC = () => {
         </div>
 
         {/* Core Values */}
-        <div id="core-values" className="text-center mb-8">
-          <h2 className="text-4xl font-serif font-bold text-blue-900 mb-4">
+        <div id="core-values" className="text-center mb-6 md:mb-8">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-blue-900 mb-3 md:mb-4">
             Core Values
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
             Our commitment to ethical, inclusive, and effective leadership drives every decision and action
           </p>
           
@@ -131,7 +131,7 @@ const OverviewSection: React.FC = () => {
           }
           
           .animate-scroll {
-            animation: scroll 30s linear infinite;
+            animation: scroll 15s linear infinite;
           }
           
           .animate-scroll:hover {
