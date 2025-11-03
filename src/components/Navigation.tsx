@@ -26,11 +26,11 @@ const Navigation: React.FC = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
             <img 
-              src="/apc logo.png" 
-              alt="APC Logo" 
+              src="/logo .png" 
+              alt="Campaign Logo" 
               className="h-10 w-auto"
             />
-            <div className="text-2xl font-bold text-green-700">
+            <div className="text-2xl font-serif font-bold text-green-700">
               Hon. Zannah Lawan Ajimi
             </div>
           </div>

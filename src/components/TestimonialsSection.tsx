@@ -56,7 +56,7 @@ const TestimonialsSection: React.FC = () => {
     <section id="testimonials" className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Community Endorsements</h2>
+          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">Community Endorsements</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Trusted by leaders, respected by the community, committed to transformation
           </p>
@@ -90,7 +90,7 @@ const TestimonialsSection: React.FC = () => {
                   <div className="text-xl font-semibold text-gray-900 mb-2">
                     {testimonials[currentTestimonial].name}
                   </div>
-                  <div className="text-green-600 font-medium">
+                  <div className="text-blue-900 font-medium">
                     {testimonials[currentTestimonial].title}
                   </div>
                 </div>
@@ -117,19 +117,19 @@ const TestimonialsSection: React.FC = () => {
         {/* Trust Indicators */}
         <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
+            <div className="text-3xl font-bold text-blue-900 mb-2">500+</div>
             <div className="text-gray-600 text-sm">Community Leaders</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">15+</div>
+            <div className="text-3xl font-bold text-blue-900 mb-2">15+</div>
             <div className="text-gray-600 text-sm">Years Experience</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">100%</div>
+            <div className="text-3xl font-bold text-blue-900 mb-2">100%</div>
             <div className="text-gray-600 text-sm">Transparency</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
+            <div className="text-3xl font-bold text-blue-900 mb-2">24/7</div>
             <div className="text-gray-600 text-sm">Community Service</div>
           </div>
         </div>

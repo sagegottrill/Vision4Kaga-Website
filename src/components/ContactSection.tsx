@@ -14,7 +14,7 @@ const ContactSection: React.FC = () => {
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">Get In Touch</h2>
+          <h2 className="text-4xl font-serif font-bold text-blue-900 mb-4">Get In Touch</h2>
           <p className="text-xl text-gray-600">Connect with our campaign and share your vision for Kaga</p>
         </div>
 
@@ -54,7 +54,7 @@ const ContactSection: React.FC = () => {
               />
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+                className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
               >
                 Send Message
               </button>
@@ -68,51 +68,46 @@ const ContactSection: React.FC = () => {
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-4">Campaign Headquarters</h3>
-              <div className="space-y-3 text-gray-700">
+              <h3 className="text-2xl font-semibold text-blue-900 mb-4">Campaign Headquarters</h3>
+              <div className="space-y-4 text-gray-700">
                 <p className="flex items-start">
-                  <span className="mr-3">📍</span>
+                  <svg className="w-6 h-6 text-blue-900 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
                   <span>Benisheikh, Kaga Local Government<br/>Borno State, Nigeria</span>
                 </p>
                 <p className="flex items-center">
-                  <span className="mr-3">📞</span>
+                  <svg className="w-6 h-6 text-blue-900 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                   <span>+234 XXX XXX XXXX</span>
                 </p>
                 <p className="flex items-center">
-                  <span className="mr-3">✉️</span>
-                  <span>info@zannahajimi.com</span>
-                </p>
-                <p className="flex items-center">
-                  <span className="mr-3">🕐</span>
-                  <span>Mon-Fri: 8am-6pm | Sat: 9am-3pm</span>
+                  <svg className="w-6 h-6 text-blue-900 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>zanna4real77@gmail.com</span>
                 </p>
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-4">Follow Our Campaign</h3>
+              <h3 className="text-2xl font-semibold text-blue-900 mb-4">Follow Our Campaign</h3>
               <div className="flex gap-4">
-                {['Facebook', 'Twitter', 'Instagram', 'LinkedIn', 'YouTube', 'TikTok'].map((platform) => (
-                  <button
-                    key={platform}
-                    onClick={() => window.open('#', '_blank')}
-                    className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition transform hover:scale-110"
-                    title={platform}
-                  >
-                    {platform[0]}
-                  </button>
-                ))}
+                <button
+                  onClick={() => window.open('#', '_blank')}
+                  className="w-12 h-12 bg-blue-900 text-white rounded-lg flex items-center justify-center hover:bg-blue-800 transition transform hover:scale-105"
+                  title="Facebook"
+                >
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </button>
               </div>
             </div>
 
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-blue-900 mb-3">Media Inquiries</h3>
-              <p className="text-gray-700 mb-3">For press and media requests, please contact:</p>
-              <p className="font-semibold text-blue-900">press@zannahajimi.com</p>
-              <button className="mt-4 text-blue-600 font-semibold hover:text-blue-800">
-                Download Strategic Blueprint →
-              </button>
-            </div>
+
           </div>
         </div>
       </div>

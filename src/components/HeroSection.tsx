@@ -4,7 +4,16 @@ import { useNavigate } from 'react-router-dom';
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   
+  // Carousel images
+  const carouselImages = [
+    '/hero c/1.jpg',
+    '/hero c/2.jpg',
+    '/hero c/4.jpg',
+    '/hero c/5.jpg',
+  ];
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -12,68 +21,140 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
     setIsVisible(true);
-  }, []);
+    
+    // Auto-advance carousel
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20">
+    <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20 overflow-hidden">
+      {/* Carousel Background */}
       <div className="absolute inset-0 z-0">
-        {/* Background gradient */}
-        <div className="w-full h-full bg-gradient-to-br from-blue-900 via-green-800 to-blue-700"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-green-900/40"></div>
+        {carouselImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img 
+              src={image} 
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Carousel Controls */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300"
+        aria-label="Previous slide"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300"
+        aria-label="Next slide"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Carousel Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+        {carouselImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-white w-8' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-white to-green-200 bg-clip-text text-transparent">
+        {/* Logo and Tag */}
+        <div className={`mb-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <img 
+              src="/logo .png" 
+              alt="Campaign Logo" 
+              className="h-12 w-auto"
+            />
+          </div>
+          <p className="text-white/90 text-base font-medium">
+            APC Chairmanship Candidate • Kaga Local Government • Borno State
+          </p>
+        </div>
+
+        {/* Main Heading */}
+        <div className={`mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
             Vision for a New Kaga
           </h1>
-          <p className="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
             Advancing Inclusive Development and Accountable Leadership in Kaga Local Government Area
           </p>
         </div>
         
-        {/* Animated Statistics */}
-        <div className={`mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 max-w-4xl mx-auto transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-white mb-1">6</div>
-            <div className="text-green-200 text-sm font-medium">Development Pillars</div>
+        {/* Statistics Cards */}
+        <div className={`mb-12 grid grid-cols-3 gap-4 max-w-3xl mx-auto transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+            <div className="text-4xl font-bold text-white mb-2">6</div>
+            <div className="text-white/80 text-sm">Development Pillars</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-white mb-1">100%</div>
-            <div className="text-green-200 text-sm font-medium">Community Focused</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+            <div className="text-4xl font-bold text-white mb-2">100%</div>
+            <div className="text-white/80 text-sm">Community Focused</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-white mb-1">2025</div>
-            <div className="text-green-200 text-sm font-medium">Transformation Year</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2">2025/2026</div>
+            <div className="text-white/80 text-sm">Transformation Year</div>
           </div>
         </div>
 
-        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        {/* Call to Action Buttons */}
+        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <button 
             onClick={() => scrollToSection('platform')}
-            className="group bg-green-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-green-700 hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-green-500/25 relative overflow-hidden"
+            className="bg-green-600 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-xl"
           >
-            <span className="relative z-10">View Development Agenda</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            View Development Agenda
           </button>
           <button 
             onClick={() => scrollToSection('volunteer')}
-            className="group bg-white text-green-700 px-10 py-4 rounded-full text-lg font-semibold hover:bg-green-50 hover:scale-105 transition-all duration-300 shadow-2xl border-2 border-green-600 hover:border-green-700 relative overflow-hidden"
+            className="bg-white text-gray-900 px-10 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
           >
-            <span className="relative z-10">Join the Movement</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            Join the Movement
           </button>
-        </div>
-
-        <div className={`mt-6 text-white/80 text-sm transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <p className="flex items-center justify-center space-x-2 flex-wrap">
-            <img 
-              src="/apc logo.png" 
-              alt="APC Logo" 
-              className="h-5 w-auto"
-            />
-            <span className="text-center">APC Chairmanship Candidate • Kaga Local Government • Borno State</span>
-          </p>
         </div>
       </div>
     </section>

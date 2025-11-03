@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Modal from './ui/modal';
+import React from 'react';
 
 const platformIssues = [
   { 
     id: 1, 
     title: 'Education & Human Capital Development', 
-    icon: '🎓', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+      </svg>
+    ),
     description: 'Ensure equitable access to quality education and skills development across all wards in Kaga. Rehabilitate schools, provide teacher incentives, promote digital literacy, and establish education trust funds for STEM scholarships.',
     interventions: [
       'Rehabilitate and equip public primary and secondary schools with modern learning tools',
@@ -19,7 +22,11 @@ const platformIssues = [
   { 
     id: 2, 
     title: 'Youth & Women Empowerment', 
-    icon: '👥', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+    ),
     description: 'Promote self-reliance through vocational training and entrepreneurship support. Revitalize vocational skill centers, introduce enterprise grants, and establish empowerment centers for training and mentorship.',
     interventions: [
       'Revitalize Kaga Vocational Skill Center (ICT, agriculture, crafts, entrepreneurship)',
@@ -32,7 +39,11 @@ const platformIssues = [
   { 
     id: 3, 
     title: 'Health & Environmental Sanitation', 
-    icon: '🏥', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
     description: 'Strengthen healthcare systems and promote clean environment. Revitalize primary healthcare centers, improve WASH access, institutionalize monthly sanitation programs, and launch anti-drug abuse campaigns.',
     interventions: [
       'Revitalize primary Health Care centres across all wards',
@@ -45,7 +56,11 @@ const platformIssues = [
   { 
     id: 4, 
     title: 'Agriculture & Rural Economy', 
-    icon: '🌾', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
     description: 'Boost food production and rural livelihoods through modernized agriculture. Establish mechanized farming clusters, distribute improved seeds and equipment, train farmer cooperatives, and strengthen livestock programs.',
     interventions: [
       'Establish mechanized farming clusters and introduce support schemes',
@@ -58,7 +73,11 @@ const platformIssues = [
   { 
     id: 5, 
     title: 'Peacebuilding & Security', 
-    icon: '🛡️', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
     description: 'Foster peaceful coexistence and grassroots security through inclusive mechanisms. Strengthen ward peace committees, collaborate with security forces, hold community dialogues, and build capacity of local security personnel.',
     interventions: [
       'Strengthen Ward Peace Committees and mediation systems',
@@ -71,7 +90,11 @@ const platformIssues = [
   { 
     id: 6, 
     title: 'Infrastructure & ICT Development', 
-    icon: '🏗️', 
+    icon: (
+      <svg className="w-12 h-12 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
     description: 'Enhance physical connectivity and digital inclusion for development. Rehabilitate roads, install solar streetlights, drill boreholes, revitalize ICT centers, and digitize governance processes.',
     interventions: [
       'Rehabilitate rural and township roads to connect economic centers',
@@ -84,29 +107,11 @@ const platformIssues = [
 ];
 
 const PlatformSection: React.FC = () => {
-  const [selectedIssue, setSelectedIssue] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleViewDetails = (issueId: number) => {
-    setSelectedIssue(issueId);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedIssue(null);
-  };
-
   return (
     <section id="platform" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
-            <span className="w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></span>
-            Strategic Blueprint
-          </div>
-          <h2 className="text-4xl font-bold text-blue-900 mb-4 bg-gradient-to-r from-blue-900 to-green-700 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-serif font-bold text-blue-900 mb-4">
             Strategic Development Agenda
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -119,78 +124,16 @@ const PlatformSection: React.FC = () => {
           {platformIssues.map((issue) => (
             <div 
               key={issue.id}
-              className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border border-gray-100 hover:border-green-200 relative overflow-hidden"
+              className="bg-white rounded-lg p-6 shadow-md border border-gray-200"
             >
-              {/* Background gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="relative z-10">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{issue.icon}</div>
-                <h3 className="text-xl font-bold text-blue-900 mb-3 group-hover:text-green-700 transition-colors duration-300">{issue.title}</h3>
-                <p className="text-gray-600 leading-relaxed mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                  {issue.description}
-                </p>
-                <button 
-                  onClick={() => handleViewDetails(issue.id)}
-                  className="inline-flex items-center text-green-600 font-semibold hover:text-green-700 transition-colors duration-300 group-hover:translate-x-1"
-                >
-                  Tap to view
-                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
+              <div className="mb-4">{issue.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">{issue.title}</h3>
+              <p className="text-gray-600 leading-relaxed">
+                {issue.description}
+              </p>
             </div>
           ))}
         </div>
-
-        {/* Glass Morphism Modal for Detailed Interventions */}
-        <Modal 
-          isOpen={isModalOpen} 
-          onClose={handleCloseModal}
-          title={selectedIssue ? platformIssues[selectedIssue - 1].title : ''}
-        >
-          {selectedIssue && (
-            <div>
-              <div className="flex items-center mb-6">
-                <div className="text-4xl mr-4">{platformIssues[selectedIssue - 1].icon}</div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">{platformIssues[selectedIssue - 1].title}</h3>
-                  <p className="text-gray-600">Key Interventions & Implementation Plan</p>
-                </div>
-              </div>
-              
-              <div className="grid gap-4 mb-8">
-                {platformIssues[selectedIssue - 1].interventions.map((intervention, index) => (
-                  <div key={index} className="flex items-start gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
-                    <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0">
-                      {index + 1}
-                    </div>
-                    <p className="text-gray-800 leading-relaxed">{intervention}</p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="pt-6 border-t border-white/20">
-                <h4 className="font-semibold text-lg text-gray-900 mb-4">Implementation Framework</h4>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div className="p-4 bg-green-500/10 backdrop-blur-sm rounded-lg border border-green-500/20">
-                    <h5 className="font-semibold text-green-800 mb-2">Phase 1: Foundation</h5>
-                    <p className="text-green-700">Initial assessment and stakeholder engagement</p>
-                  </div>
-                  <div className="p-4 bg-yellow-500/10 backdrop-blur-sm rounded-lg border border-yellow-500/20">
-                    <h5 className="font-semibold text-yellow-800 mb-2">Phase 2: Implementation</h5>
-                    <p className="text-yellow-700">Rollout of key interventions and programs</p>
-                  </div>
-                  <div className="p-4 bg-blue-500/10 backdrop-blur-sm rounded-lg border border-blue-500/20">
-                    <h5 className="font-semibold text-blue-800 mb-2">Phase 3: Monitoring</h5>
-                    <p className="text-blue-700">Continuous evaluation and improvement</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </Modal>
       </div>
     </section>
   );
