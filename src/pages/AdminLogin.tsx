@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
@@ -41,11 +39,8 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-
-      <main className="pt-28 pb-12 flex items-center justify-center px-4">
-        <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center px-4">
+      <div className="max-w-md w-full">
           {/* Logo and Title */}
           <div className="text-center mb-8">
             <img 
@@ -122,9 +117,6 @@ const AdminLogin: React.FC = () => {
             <p className="mt-2">Contact the administrator if you don't have access</p>
           </div>
         </div>
-      </main>
-
-      <Footer />
     </div>
   );
 };

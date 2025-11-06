@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, type Endorsement } from '@/lib/supabase';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -122,12 +120,37 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Site navigation to match homepage */}
-      <Navigation />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+      {/* Header */}
+      <header className="bg-white shadow-md border-b-2 border-green-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <img src="/logo .png" alt="Logo" className="h-12 w-auto" />
+              <div>
+                <h1 className="text-3xl font-serif font-bold text-blue-900">Admin Dashboard</h1>
+                {user && <p className="text-sm text-gray-600">{user.email}</p>}
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => navigate('/')}
+                className="text-gray-600 hover:text-blue-600 transition-all duration-300 font-medium"
+              >
+                ← Back to Website
+              </button>
+              <button
+                onClick={handleLogout}
+                className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full hover:scale-105 transition-all duration-300 shadow-lg font-semibold"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
 
-      <main className="pt-28">{/* offset for fixed nav */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="text-xl text-gray-600">Loading...</div>
@@ -255,10 +278,7 @@ const AdminDashboard: React.FC = () => {
         </div>
         </>
         )}
-        </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 };
