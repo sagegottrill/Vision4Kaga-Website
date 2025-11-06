@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 const VolunteerSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', state: '', lga: '', message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('volunteers')
+        .insert([formData]);
+
+      if (supabaseError) throw supabaseError;
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', state: '', lga: '', message: '' });
+      
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err: any) {
+      setError(err.message || 'Failed to submit. Please try again.');
+      console.error('Error submitting volunteer form:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -23,6 +44,11 @@ const VolunteerSection: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-gray-50 rounded-lg p-8">
+          {error && (
+            <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-6 text-center">
+              <p className="text-red-700">{error}</p>
+            </div>
+          )}
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <input
               type="text"
@@ -77,9 +103,10 @@ const VolunteerSection: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-800 transition"
+            disabled={isSubmitting}
+            className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            Sign Me Up!
+            {isSubmitting ? 'Submitting...' : 'Sign Me Up!'}
           </button>
 
           {submitted && (

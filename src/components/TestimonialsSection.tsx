@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 
-const testimonials = [
+const defaultTestimonials = [
   {
     id: 1,
     name: "Alhaji Ibrahim Garba",
     title: "Traditional Leader",
+    location: "Kaga Central",
     content: "Hon. Zannah Lawan Ajimi has demonstrated exceptional leadership qualities and genuine commitment to our community's development.",
     rating: 5
   },
@@ -12,6 +14,7 @@ const testimonials = [
     id: 2,
     name: "Dr. Fatima Mohammed",
     title: "Education Specialist",
+    location: "Mainok Ward",
     content: "His vision for education transformation aligns perfectly with our community's needs. We trust his ability to deliver.",
     rating: 5
   },
@@ -19,14 +22,48 @@ const testimonials = [
     id: 3,
     name: "Engr. Musa Bello",
     title: "Youth Representative",
+    location: "Benisheikh",
     content: "Finally, a leader who understands the challenges facing our youth and has concrete plans to address them.",
     rating: 5
   }
 ];
 
 const TestimonialsSection: React.FC = () => {
+  const [testimonials, setTestimonials] = useState(defaultTestimonials);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Load approved endorsements from Supabase
+    const loadEndorsements = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('endorsements')
+          .select('*')
+          .eq('status', 'approved')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          const formattedApproved = data.map((e: any) => ({
+            id: e.id,
+            name: e.name,
+            title: e.title,
+            location: e.location,
+            content: e.content,
+            rating: 5
+          }));
+          
+          setTestimonials([...defaultTestimonials, ...formattedApproved]);
+        }
+      } catch (err) {
+        console.error('Error loading endorsements:', err);
+      }
+    };
+
+    loadEndorsements();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,7 +87,7 @@ const TestimonialsSection: React.FC = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
 
   return (
     <section id="testimonials" className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
@@ -92,6 +129,7 @@ const TestimonialsSection: React.FC = () => {
                   </div>
                   <div className="text-blue-900 font-medium">
                     {testimonials[currentTestimonial].title}
+                    {testimonials[currentTestimonial].location && ` • ${testimonials[currentTestimonial].location}`}
                   </div>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import AboutSection from './AboutSection';
 import PlatformSection from './PlatformSection';
 import OverviewSection from './OverviewSection';
 import TestimonialsSection from './TestimonialsSection';
+import EndorsementForm from './EndorsementForm';
 import VolunteerSection from './VolunteerSection';
 import ContactSection from './ContactSection';
 import FloatingActionButton from './FloatingActionButton';
@@ -19,6 +20,7 @@ const AppLayout: React.FC = () => {
       <PlatformSection />
       <OverviewSection />
       <TestimonialsSection />
+      <EndorsementForm />
       <VolunteerSection />
       <ContactSection />
       <FloatingActionButton />

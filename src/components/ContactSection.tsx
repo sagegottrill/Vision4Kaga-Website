@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('contacts')
+        .insert([formData]);
+
+      if (supabaseError) throw supabaseError;
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err: any) {
+      setError(err.message || 'Failed to send message. Please try again.');
+      console.error('Error submitting contact form:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -21,6 +42,11 @@ const ContactSection: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4 text-center">
+                  <p className="text-red-700">{error}</p>
+                </div>
+              )}
               <input
                 type="text"
                 placeholder="Your Name *"
@@ -54,9 +80,10 @@ const ContactSection: React.FC = () => {
               />
               <button
                 type="submit"
-                className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
+                disabled={isSubmitting}
+                className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
               {submitted && (
                 <div className="p-4 bg-green-100 text-green-800 rounded-lg text-center font-semibold">

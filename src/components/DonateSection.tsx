@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 const DonateSection: React.FC = () => {
   const [amount, setAmount] = useState<number>(50);
@@ -6,13 +7,42 @@ const DonateSection: React.FC = () => {
   const [isRecurring, setIsRecurring] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', zip: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const presetAmounts = [1000, 2500, 5000, 10000, 25000, 50000];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setError('');
+
+    const selectedAmount = customAmount ? parseFloat(customAmount) : amount;
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('donations')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          ward_community: formData.zip,
+          amount: selectedAmount,
+          is_recurring: isRecurring
+        }]);
+
+      if (supabaseError) throw supabaseError;
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', zip: '' });
+      setCustomAmount('');
+      
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err: any) {
+      setError(err.message || 'Failed to process donation. Please try again.');
+      console.error('Error submitting donation:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedAmount = customAmount ? parseFloat(customAmount) : amount;
@@ -29,6 +59,11 @@ const DonateSection: React.FC = () => {
 
         <div className="bg-white rounded-lg p-8 text-gray-900">
           <form onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-6 text-center">
+                <p className="text-red-700">{error}</p>
+              </div>
+            )}
             <div className="mb-6">
               <label className="block text-sm font-semibold mb-3">Select Amount</label>
               <div className="grid grid-cols-3 gap-3 mb-4">
@@ -97,9 +132,10 @@ const DonateSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition"
+              disabled={isSubmitting}
+              className="w-full bg-green-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              Support Campaign ₦{selectedAmount.toLocaleString()}{isRecurring ? '/month' : ''}
+              {isSubmitting ? 'Processing...' : `Support Campaign ₦${(customAmount ? parseFloat(customAmount) : amount).toLocaleString()}${isRecurring ? '/month' : ''}`}
             </button>
 
             {submitted && (
