@@ -63,6 +63,13 @@ const TestimonialsSection: React.FC = () => {
     };
 
     loadEndorsements();
+    
+    // Poll for new approved endorsements every 10 seconds
+    const interval = setInterval(() => {
+      loadEndorsements();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {

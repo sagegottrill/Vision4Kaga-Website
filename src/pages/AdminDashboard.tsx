@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, type Endorsement } from '@/lib/supabase';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -9,6 +11,9 @@ const AdminDashboard: React.FC = () => {
   const [endorsements, setEndorsements] = useState<Endorsement[]>([]);
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
   const [selectedEndorsement, setSelectedEndorsement] = useState<Endorsement | null>(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     // Check if user is authenticated
@@ -20,10 +25,19 @@ const AdminDashboard: React.FC = () => {
     // Load endorsements only if authenticated
     if (user) {
       loadEndorsements();
+      
+      // Auto-refresh every 30 seconds
+      const interval = setInterval(() => {
+        loadEndorsements();
+      }, 30000);
+
+      return () => clearInterval(interval);
     }
   }, [user, loading, navigate]);
 
   const loadEndorsements = async () => {
+    setIsLoading(true);
+    setLoadError('');
     try {
       const { data, error } = await supabase
         .from('endorsements')
@@ -39,8 +53,11 @@ const AdminDashboard: React.FC = () => {
         }));
         setEndorsements(formattedData as Endorsement[]);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error loading endorsements:', err);
+      setLoadError(err.message || 'Failed to load endorsements. Please refresh the page.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -53,6 +70,9 @@ const AdminDashboard: React.FC = () => {
 
       if (error) throw error;
 
+      setSuccessMessage(`✅ Endorsement from ${endorsement.name} has been approved! It will now appear in the testimonials section.`);
+      setTimeout(() => setSuccessMessage(''), 5000);
+      
       await loadEndorsements();
       setSelectedEndorsement(null);
     } catch (err) {
@@ -70,6 +90,9 @@ const AdminDashboard: React.FC = () => {
 
       if (error) throw error;
 
+      setSuccessMessage(`❌ Endorsement from ${endorsement.name} has been rejected.`);
+      setTimeout(() => setSuccessMessage(''), 5000);
+      
       await loadEndorsements();
       setSelectedEndorsement(null);
     } catch (err) {
@@ -99,43 +122,25 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <img src="/logo .png" alt="Logo" className="h-10 w-auto" />
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-                {user && <p className="text-sm text-gray-600">{user.email}</p>}
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => navigate('/')}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                View Website
-              </button>
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white">
+      {/* Site navigation to match homepage */}
+      <Navigation />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="pt-28">{/* offset for fixed nav */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="text-xl text-gray-600">Loading...</div>
           </div>
         ) : !user ? null : (
           <>
+        {/* Success Message */}
+        {successMessage && (
+          <div className="mb-6 bg-green-50 border-2 border-green-500 rounded-xl p-4 animate-pulse">
+            <p className="text-green-800 font-medium text-center">{successMessage}</p>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6">
@@ -152,24 +157,43 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Filter Tabs */}
+        {/* Filter Tabs with Refresh */}
         <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-          <div className="flex space-x-4">
-            {(['all', 'pending', 'approved', 'rejected'] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-4 py-2 rounded-lg font-medium capitalize ${
-                  filter === f
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {f}
-              </button>
-            ))}
+          <div className="flex justify-between items-center">
+            <div className="flex space-x-4">
+              {(['all', 'pending', 'approved', 'rejected'] as const).map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-4 py-2 rounded-lg font-medium capitalize ${
+                    filter === f
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={loadEndorsements}
+              disabled={isLoading}
+              className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+            >
+              <svg className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>{isLoading ? 'Refreshing...' : 'Refresh'}</span>
+            </button>
           </div>
         </div>
+
+        {/* Load Error */}
+        {loadError && (
+          <div className="mb-6 bg-red-50 border-2 border-red-500 rounded-xl p-4">
+            <p className="text-red-800 font-medium">{loadError}</p>
+          </div>
+        )}
 
         {/* Endorsements List */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -231,7 +255,10 @@ const AdminDashboard: React.FC = () => {
         </div>
         </>
         )}
-      </div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };
