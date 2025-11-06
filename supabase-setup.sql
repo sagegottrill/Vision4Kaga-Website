@@ -1,5 +1,6 @@
 -- Vision4Kaga Database Setup
 -- Run this in your Supabase SQL Editor: https://crvbilvsvqmbjywvuple.supabase.co
+-- Complete backend setup for endorsements, volunteers, contacts, and donations
 
 -- 1. Endorsements Table
 CREATE TABLE IF NOT EXISTS endorsements (
