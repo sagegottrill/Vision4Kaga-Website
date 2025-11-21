@@ -25,6 +25,14 @@ const defaultTestimonials = [
     location: "Benisheikh",
     content: "Finally, a leader who understands the challenges facing our youth and has concrete plans to address them.",
     rating: 5
+  },
+  {
+    id: 4,
+    name: "Mohammed Mala",
+    title: "Community Member",
+    location: "Kaga",
+    content: "I wholeheartedly endorse Zanna Lawan Ajimi, the APC flag bearer for Kaga Local Government Chairman. Having worked directly with him, I can personally attest that he is an exceptional choice. Zanna is hardworking, honest, and incredibly humble. His ability to multi-task and effectively work under all circumstances demonstrates a rare level of competence and dedication. The people of Kaga will be well-served by a leader so good at what he does. He is truly a great choice for Kaga.",
+    rating: 5
   }
 ];
 
@@ -54,7 +62,7 @@ const TestimonialsSection: React.FC = () => {
             content: e.content,
             rating: 5
           }));
-          
+
           setTestimonials([...defaultTestimonials, ...formattedApproved]);
         }
       } catch (err) {
@@ -63,7 +71,7 @@ const TestimonialsSection: React.FC = () => {
     };
 
     loadEndorsements();
-    
+
     // Poll for new approved endorsements every 10 seconds
     const interval = setInterval(() => {
       loadEndorsements();
@@ -112,7 +120,7 @@ const TestimonialsSection: React.FC = () => {
               {/* Background Pattern */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full -translate-y-16 translate-x-16"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100 rounded-full translate-y-12 -translate-x-12"></div>
-              
+
               <div className="relative z-10">
                 <div className="flex justify-center mb-6">
                   {[...Array(5)].map((_, i) => (
@@ -125,11 +133,11 @@ const TestimonialsSection: React.FC = () => {
                     </svg>
                   ))}
                 </div>
-                
+
                 <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 text-center mb-8 leading-relaxed">
                   "{testimonials[currentTestimonial].content}"
                 </blockquote>
-                
+
                 <div className="text-center">
                   <div className="text-xl font-semibold text-gray-900 mb-2">
                     {testimonials[currentTestimonial].name}
@@ -149,11 +157,10 @@ const TestimonialsSection: React.FC = () => {
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTestimonial 
-                    ? 'bg-green-600 scale-125' 
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentTestimonial
+                    ? 'bg-green-600 scale-125'
                     : 'bg-gray-300 hover:bg-gray-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
