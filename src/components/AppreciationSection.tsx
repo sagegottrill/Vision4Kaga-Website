@@ -27,8 +27,7 @@ const AppreciationSection: React.FC = () => {
 
                     <div className="order-1 md:order-2 flex justify-center">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-green-600 rounded-2xl transform rotate-6 opacity-20"></div>
-                            <div className="absolute inset-0 bg-white rounded-2xl transform -rotate-6 opacity-10"></div>
+
                             <img
                                 src="/he.jpg"
                                 alt="His Excellency Prof. Babagana Umara Zulum"
