@@ -28,8 +28,8 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><button onClick={() => scrollToSection('donate')} className="text-gray-400 hover:text-white transition">Support Campaign</button></li>
               <li><button onClick={() => scrollToSection('volunteer')} className="text-gray-400 hover:text-white transition">Volunteer</button></li>
-              <li><button className="text-gray-400 hover:text-white transition">Join the Movement</button></li>
-              <li><button className="text-gray-400 hover:text-white transition">Share Our Vision</button></li>
+              <li><button onClick={() => scrollToSection('volunteer')} className="text-gray-400 hover:text-white transition">Join the Movement</button></li>
+              <li><button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition">Share Our Vision</button></li>
             </ul>
           </div>
 

@@ -38,9 +38,10 @@ const Navigation: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button
               onClick={() => scrollToSection('council')}
-              className="border-2 border-blue-900 text-blue-900 px-6 py-2 rounded-full hover:bg-blue-900 hover:text-white transition-all duration-300 font-semibold"
+              className="text-blue-900 font-semibold hover:text-blue-700 transition-colors relative group"
             >
               The Council
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-900 transition-all duration-300 group-hover:w-full"></span>
             </button>
           </div>
           <div className="flex items-center space-x-4">

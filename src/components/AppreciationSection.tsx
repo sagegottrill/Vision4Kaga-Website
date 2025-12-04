@@ -22,11 +22,7 @@ const AppreciationSection: React.FC = () => {
                             visionary leadership, and commitment to the development of Kaga Local Government. His transformative
                             policies and dedication to peace and prosperity continue to inspire us all.
                         </p>
-                        <div className="pt-4">
-                            <button className="bg-white text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg">
-                                Read More
-                            </button>
-                        </div>
+
                     </div>
 
                     <div className="order-1 md:order-2 flex justify-center">
