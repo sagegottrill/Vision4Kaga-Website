@@ -10,6 +10,8 @@ import VolunteerSection from './VolunteerSection';
 import ContactSection from './ContactSection';
 import FloatingActionButton from './FloatingActionButton';
 import Footer from './Footer';
+import CouncilSection from './CouncilSection';
+import AppreciationSection from './AppreciationSection';
 
 const AppLayout: React.FC = () => {
   return (
@@ -19,6 +21,8 @@ const AppLayout: React.FC = () => {
       <AboutSection />
       <PlatformSection />
       <OverviewSection />
+      <CouncilSection />
+      <AppreciationSection />
       <TestimonialsSection />
       <EndorsementForm />
       <VolunteerSection />
