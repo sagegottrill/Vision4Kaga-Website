@@ -18,11 +18,11 @@ const AppLayout: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       <HeroSection />
+      <AppreciationSection />
       <AboutSection />
       <PlatformSection />
       <OverviewSection />
       <CouncilSection />
-      <AppreciationSection />
       <TestimonialsSection />
       <EndorsementForm />
       <VolunteerSection />
