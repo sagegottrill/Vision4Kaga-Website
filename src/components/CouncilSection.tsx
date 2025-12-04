@@ -9,21 +9,21 @@ interface CouncilMember {
 
 const councilMembers: CouncilMember[] = [
     { name: "Hon. Bukar Ali Hassan", role: "Vice Chairman", image: "/vc.jpeg" },
-    { name: "ZANNA MUSTAPHA MAINA", ward: "BENISHEIKH" },
-    { name: "ALHAJI BALA MOHAMMED", ward: "BORGOZO" },
-    { name: "SADIQ SHETTIMA", ward: "DOGOMA/JALORI" },
-    { name: "IBRAHIM MOHAMMED", ward: "DONGO" },
-    { name: "MOHAMMED ALHAJI KUNDULI", ward: "FAI/AFA/MAUDORI" },
-    { name: "FATIMA MALLAM AJI", ward: "GALANGI" },
-    { name: "HON. MODU ALI KOLO", ward: "GUWO" },
-    { name: "TIJJANI GONI ALI", ward: "KARAWARU" },
-    { name: "FUGU MOHAMMED", ward: "MAINOK" },
-    { name: "GARBA GONI MODU", ward: "MARGUBA" },
-    { name: "MOHAMMED ALHAJI BUKAR", ward: "NGAMDU" },
-    { name: "ABAKAR MODU MUSTAPHA", ward: "SHETTIMARI" },
-    { name: "ALHAJI GARBA AUDU", ward: "TOBOLO" },
-    { name: "MODU MUSA BULAMA", ward: "WAJIRO" },
-    { name: "IBRAHIM BUNU", ward: "WASARAM" }
+    { name: "ZANNA MUSTAPHA MAINA", ward: "BENISHEIKH WARD" },
+    { name: "ALHAJI BALA MOHAMMED", ward: "BORGOZO WARD" },
+    { name: "SADIQ SHETTIMA", ward: "DOGOMA/JALORI WARD" },
+    { name: "IBRAHIM MOHAMMED", ward: "DONGO WARD" },
+    { name: "MOHAMMED ALHAJI KUNDULI", ward: "FAI/AFA/MAUDORI WARD" },
+    { name: "FATIMA MALLAM AJI", ward: "GALANGI WARD" },
+    { name: "HON. MODU ALI KOLO", ward: "GUWO WARD" },
+    { name: "TIJJANI GONI ALI", ward: "KARAWARU WARD" },
+    { name: "FUGU MOHAMMED", ward: "MAINOK WARD" },
+    { name: "GARBA GONI MODU", ward: "MARGUBA WARD" },
+    { name: "MOHAMMED ALHAJI BUKAR", ward: "NGAMDU WARD" },
+    { name: "ABAKAR MODU MUSTAPHA", ward: "SHETTIMARI WARD" },
+    { name: "ALHAJI GARBA AUDU", ward: "TOBOLO WARD" },
+    { name: "MODU MUSA BULAMA", ward: "WAJIRO WARD" },
+    { name: "IBRAHIM BUNU", ward: "WASARAM WARD" }
 ];
 
 const CouncilSection: React.FC = () => {
@@ -75,7 +75,7 @@ const CouncilSection: React.FC = () => {
                                         </div>
                                         <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">{member.name}</h3>
                                         <div className="bg-gray-50 px-4 py-1.5 rounded-full border border-gray-100">
-                                            <p className="text-gray-600 font-medium text-xs tracking-wide uppercase">WARD: {member.ward}</p>
+                                            <p className="text-gray-600 font-medium text-xs tracking-wide uppercase">{member.ward}</p>
                                         </div>
                                     </>
                                 )}

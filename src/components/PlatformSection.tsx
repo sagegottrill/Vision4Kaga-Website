@@ -108,14 +108,7 @@ const PlatformSection: React.FC = () => {
                 {issue.description}
               </p>
 
-              <div className="space-y-2">
-                {issue.interventions.map((item, idx) => (
-                  <div key={idx} className="flex items-center text-sm text-gray-500">
-                    <span className={`w-2 h-2 ${issue.color} rounded-full mr-2`}></span>
-                    {item}
-                  </div>
-                ))}
-              </div>
+
             </div>
           ))}
         </div>
