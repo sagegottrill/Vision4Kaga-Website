@@ -31,7 +31,15 @@ const defaultTestimonials = [
     name: "Mohammed Mala",
     title: "Community Member",
     location: "Kaga",
-    content: "I wholeheartedly endorse Zanna Lawan Ajimi, the APC flag bearer for Kaga Local Government Chairman. Having worked directly with him, I can personally attest that he is an exceptional choice. Zanna is hardworking, honest, and incredibly humble. His ability to multi-task and effectively work under all circumstances demonstrates a rare level of competence and dedication. The people of Kaga will be well-served by a leader so good at what he does. He is truly a great choice for Kaga.",
+    content: "I wholeheartedly endorse Zanna Lawan Ajimi. Having worked directly with him, I can attest that he is an exceptional choice. Zanna is hardworking, honest, and incredibly humble.",
+    rating: 5
+  },
+  {
+    id: 5,
+    name: "Mala lawan Ngamdu",
+    title: "Community Member",
+    location: "Ngamdu",
+    content: "I endorse our incoming Chairman of Kaga Local Government Area based on his clear commitment to effective leadership, transparency, and tangible development. During our engagement, he demonstrated a strong understanding of the challenges facing our communities and presented practical strategies to address them. His focus on improving administrative structures, enhancing service delivery, and investing in infrastructural growth shows a leader who is ready to work, not just talk. I am particularly encouraged by his readiness to support dry season farming, empower local farmers, and strengthen economic opportunities across the LGA. His vision for a more organized, efficient, and people-centered local government aligns with the progress we all want for Kaga. For these reasons, and because I believe in his capacity to deliver meaningful, sustainable development, I proudly endorse him.",
     rating: 5
   }
 ];
@@ -39,10 +47,8 @@ const defaultTestimonials = [
 const TestimonialsSection: React.FC = () => {
   const [testimonials, setTestimonials] = useState(defaultTestimonials);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Load approved endorsements from Supabase
     const loadEndorsements = async () => {
       try {
         const { data, error } = await supabase
@@ -71,99 +77,79 @@ const TestimonialsSection: React.FC = () => {
     };
 
     loadEndorsements();
-
-    // Poll for new approved endorsements every 10 seconds
-    const interval = setInterval(() => {
-      loadEndorsements();
-    }, 10000);
-
+    const interval = setInterval(loadEndorsements, 10000);
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById('testimonials');
-    if (element) observer.observe(element);
-
-    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
+    }, 8000);
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">Community Endorsements</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Trusted by leaders, respected by the community, committed to transformation
-          </p>
+    <section id="testimonials" className="py-24 bg-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')]"></div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+            Voices of Kaga
+          </h2>
+          <div className="w-24 h-1 bg-green-600 mx-auto rounded-full"></div>
         </div>
 
-        <div className="relative">
-          <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full -translate-y-16 translate-x-16"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100 rounded-full translate-y-12 -translate-x-12"></div>
-
-              <div className="relative z-10">
-                <div className="flex justify-center mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-6 h-6 text-yellow-400 fill-current"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
+        <div className="grid grid-cols-1 place-items-center min-h-[400px]">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={testimonial.id}
+              className={`col-start-1 row-start-1 w-full transition-all duration-700 ease-in-out transform ${index === currentTestimonial
+                  ? 'opacity-100 translate-x-0 scale-100 relative z-10'
+                  : 'opacity-0 translate-x-8 scale-95 pointer-events-none absolute z-0'
+                }`}
+            >
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="mb-8 text-green-600 opacity-20">
+                  <svg className="w-20 h-20 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21L14.017 18C14.017 16.054 15.331 15.254 16.705 15.024C16.212 15.762 15.179 16.987 14.509 17.323C13.97 17.595 13.03 17.763 12.383 17.297C11.732 16.827 11.848 15.582 12.313 14.697C12.959 13.477 14.85 11.533 16.57 11.533C18.266 11.533 19.333 12.919 19.333 14.879C19.333 17.958 16.026 21 14.017 21ZM6.196 21L6.196 18C6.196 16.054 7.51 15.254 8.884 15.024C8.391 15.762 7.358 16.987 6.688 17.323C6.149 17.595 5.209 17.763 4.562 17.297C3.911 16.827 4.027 15.582 4.492 14.697C5.138 13.477 7.029 11.533 8.749 11.533C10.445 11.533 11.512 12.919 11.512 14.879C11.512 17.958 8.205 21 6.196 21Z" />
+                  </svg>
                 </div>
 
-                <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 text-center mb-8 leading-relaxed">
-                  "{testimonials[currentTestimonial].content}"
-                </blockquote>
+                <p className="text-2xl md:text-3xl font-serif text-gray-800 leading-relaxed mb-10">
+                  "{testimonial.content}"
+                </p>
 
-                <div className="text-center">
-                  <div className="text-xl font-semibold text-gray-900 mb-2">
-                    {testimonials[currentTestimonial].name}
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 overflow-hidden border-2 border-green-600 p-1">
+                    <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center text-gray-500 text-xl font-bold">
+                      {testimonial.name.charAt(0)}
+                    </div>
                   </div>
-                  <div className="text-blue-900 font-medium">
-                    {testimonials[currentTestimonial].title}
-                    {testimonials[currentTestimonial].location && ` • ${testimonials[currentTestimonial].location}`}
-                  </div>
+                  <h4 className="text-xl font-bold text-gray-900">{testimonial.name}</h4>
+                  <p className="text-green-600 font-medium tracking-wide uppercase text-sm mt-1">
+                    {testimonial.title}
+                  </p>
+                  {testimonial.location && (
+                    <p className="text-gray-500 text-sm mt-1">{testimonial.location}</p>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Testimonial Indicators */}
-          <div className="flex justify-center mt-8 space-x-3">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentTestimonial
-                    ? 'bg-green-600 scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-              />
-            ))}
-          </div>
+        <div className="flex justify-center mt-12 space-x-3">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentTestimonial(index)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${index === currentTestimonial ? 'w-12 bg-green-600' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

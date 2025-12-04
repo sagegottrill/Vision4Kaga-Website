@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const OverviewSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredValue, setHoveredValue] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,128 +20,124 @@ const OverviewSection: React.FC = () => {
   }, []);
 
   const coreValues = [
-    { 
-      name: 'INTEGRITY', 
+    {
+      name: 'INTEGRITY',
       description: 'Transparent and honest leadership in all governance matters',
-      icon: '🛡️',
-      color: 'blue',
-      impact: '100% Transparency',
-      example: 'Open budget processes and public accountability'
+      color: 'bg-blue-100 text-blue-600',
     },
-    { 
-      name: 'EQUITY', 
+    {
+      name: 'EQUITY',
       description: 'Fair and inclusive development across all wards and communities',
-      icon: '⚖️',
-      color: 'green',
-      impact: '15 Wards Covered',
-      example: 'Equal opportunities for all communities'
+      color: 'bg-green-100 text-green-600',
     },
-    { 
-      name: 'INNOVATION', 
+    {
+      name: 'INNOVATION',
       description: 'Creative solutions leveraging technology and modern approaches',
-      icon: '💡',
-      color: 'purple',
-      impact: 'Digital First',
-      example: 'Smart governance and digital services'
+      color: 'bg-purple-100 text-purple-600',
     },
-    { 
-      name: 'COLLABORATION', 
+    {
+      name: 'COLLABORATION',
       description: 'Partnership-driven progress with stakeholders and communities',
-      icon: '🤝',
-      color: 'orange',
-      impact: '500+ Partners',
-      example: 'Community-driven development initiatives'
+      color: 'bg-orange-100 text-orange-600',
     },
-    { 
-      name: 'SERVICE', 
+    {
+      name: 'SERVICE',
       description: 'Community-first approach prioritizing people\'s welfare',
-      icon: '❤️',
-      color: 'red',
-      impact: '24/7 Service',
-      example: 'Always available for community needs'
+      color: 'bg-red-100 text-red-600',
     },
-    { 
-      name: 'RESILIENCE', 
+    {
+      name: 'RESILIENCE',
       description: 'Sustainable long-term solutions for lasting development',
-      icon: '🌱',
-      color: 'teal',
-      impact: 'Long-term Vision',
-      example: 'Sustainable development for future generations'
+      color: 'bg-teal-100 text-teal-600',
     }
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Vision & Mission */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-8 md:mb-16">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-xl">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4 md:mb-6">Our Vision</h2>
-            <p className="text-base md:text-lg leading-relaxed text-gray-700">
-              To build a prosperous, secure, and inclusive Kaga local government where every community 
-              thrives through equitable development, empowered communities, and responsive leadership.
-            </p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-8 rounded-xl">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4 md:mb-6">Our Mission</h2>
-            <p className="text-base md:text-lg leading-relaxed text-gray-700">
-              To drive transformational development in Kaga Local Government through participatory governance, 
-              strategic partnerships, and investments in human capital, infrastructure, and innovation, anchored 
-              on transparency, accountability, and community-driven priorities.
-            </p>
+    <section className="bg-white">
+      {/* Vision & Mission - Dark Theme for Contrast */}
+      <div className="bg-blue-900 text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+            <div className="space-y-6">
+              <div className="inline-block bg-blue-800 px-4 py-1 rounded-full text-sm font-semibold tracking-wide text-blue-200">
+                OUR VISION
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">
+                Building a Prosperous Future
+              </h2>
+              <p className="text-lg text-blue-100 leading-relaxed">
+                To build a prosperous, secure, and inclusive Kaga local government where every community
+                thrives through equitable development, empowered communities, and responsive leadership.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="inline-block bg-green-900 px-4 py-1 rounded-full text-sm font-semibold tracking-wide text-green-200">
+                OUR MISSION
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">
+                Driving Transformation
+              </h2>
+              <p className="text-lg text-blue-100 leading-relaxed">
+                To drive transformational development in Kaga Local Government through participatory governance,
+                strategic partnerships, and investments in human capital, infrastructure, and innovation, anchored
+                on transparency, accountability, and community-driven priorities.
+              </p>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Core Values */}
-        <div id="core-values" className="text-center mb-6 md:mb-8">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-blue-900 mb-3 md:mb-4">
-            Core Values
-          </h2>
-          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
-            Our commitment to ethical, inclusive, and effective leadership drives every decision and action
-          </p>
-          
-          <div className="relative overflow-hidden">
-            <div className="flex animate-scroll gap-4 md:gap-8">
+      {/* Core Values - Light Theme with Carousel */}
+      <div id="core-values" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+              Core Values
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Our commitment to ethical, inclusive, and effective leadership drives every decision and action.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden py-4">
+            <div className="flex animate-scroll gap-6">
               {[...coreValues, ...coreValues].map((value, index) => (
-                <div 
-                  key={index} 
-                  className="flex-shrink-0 w-40 sm:w-48 md:w-80 p-4 md:p-6 bg-transparent text-left"
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-72 bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
                 >
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-base md:text-xl text-blue-900">{value.name}</h3>
-                    <p className="text-sm md:text-base text-gray-700">{value.description}</p>
-                  </div>
+                  <h3 className="font-bold text-xl text-gray-900 mb-2">{value.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        
-        <style>{`
-          @keyframes scroll {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          
-          .animate-scroll {
-            animation: scroll 10s linear infinite;
-          }
-          
-          .animate-scroll:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
       </div>
+
+      <style>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+          width: max-content;
+        }
+        
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 };
 
 export default OverviewSection;
-
-

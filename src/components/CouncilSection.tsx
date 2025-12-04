@@ -28,43 +28,54 @@ const councilMembers: CouncilMember[] = [
 
 const CouncilSection: React.FC = () => {
     return (
-        <section id="council" className="py-12 md:py-20 bg-gray-50 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-blue-900 mb-4">
+        <section id="council" className="py-20 bg-slate-50 overflow-hidden relative">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/2 translate-y-1/2"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-16">
+                    <div className="inline-block bg-white border border-gray-200 px-4 py-1 rounded-full text-sm font-semibold tracking-wide text-gray-600 mb-4 shadow-sm">
+                        MEET THE TEAM
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
                         The Council
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                         Meet the dedicated team working tirelessly to build a better future for our community.
                     </p>
                 </div>
 
-                <div className="relative">
-                    <div className="flex animate-scroll gap-6 md:gap-8 items-center">
+                <div className="relative py-4">
+                    <div className="flex animate-scroll gap-8 items-center">
                         {[...councilMembers, ...councilMembers].map((member, index) => (
                             <div
                                 key={index}
-                                className={`flex-shrink-0 w-72 md:w-80 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ${member.image ? '' : 'p-6 flex flex-col justify-center items-center text-center h-48 border-t-4 border-green-600'}`}
+                                className={`flex-shrink-0 w-72 md:w-80 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${member.image ? '' : 'p-8 flex flex-col justify-center items-center text-center h-56 border-b-4 border-green-600'}`}
                             >
                                 {member.image ? (
                                     <>
-                                        <div className="aspect-w-1 aspect-h-1 w-full relative h-64">
+                                        <div className="aspect-w-1 aspect-h-1 w-full relative h-72">
                                             <img
                                                 src={member.image}
                                                 alt={member.name}
                                                 className="w-full h-full object-cover"
                                             />
-                                        </div>
-                                        <div className="p-6 text-center">
-                                            <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                                            <p className="text-green-600 font-medium">{member.role}</p>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                                <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                                                <p className="text-green-400 font-medium text-sm tracking-wide uppercase">{member.role}</p>
+                                            </div>
                                         </div>
                                     </>
                                 ) : (
                                     <>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                                        <div className="bg-blue-50 px-4 py-1 rounded-full">
-                                            <p className="text-blue-900 font-medium text-sm">WARD: {member.ward}</p>
+                                        <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-2xl">
+                                            🏛️
+                                        </div>
+                                        <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">{member.name}</h3>
+                                        <div className="bg-gray-50 px-4 py-1.5 rounded-full border border-gray-100">
+                                            <p className="text-gray-600 font-medium text-xs tracking-wide uppercase">WARD: {member.ward}</p>
                                         </div>
                                     </>
                                 )}
@@ -84,7 +95,7 @@ const CouncilSection: React.FC = () => {
           }
           
           .animate-scroll {
-            animation: scroll 40s linear infinite;
+            animation: scroll 50s linear infinite;
             width: max-content;
           }
           
