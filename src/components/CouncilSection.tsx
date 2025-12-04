@@ -35,14 +35,11 @@ const CouncilSection: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <div className="inline-block bg-white border border-gray-200 px-4 py-1 rounded-full text-sm font-semibold tracking-wide text-gray-600 mb-4 shadow-sm">
-                        MEET THE TEAM
-                    </div>
                     <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-                        The Council
+                        Meet The Council
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                        Meet the dedicated team working tirelessly to build a better future for our community.
+                        The Fourth Council of Kaga Local Government serving with integrity and purpose.
                     </p>
                 </div>
 
